@@ -419,45 +419,8 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
 crossorigin="anonymous"
 ></script>    
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $("#contactForm").on("submit", function(event) {
-      event.preventDefault();  // Prevenir el envío predeterminado del formulario
-
-      // Mostrar mensaje de carga
-      $(".loading").show();
-      $(".sent-message, .error-message").hide();
-
-      // Obtener los datos del formulario
-      var formData = $(this).serialize();
-
-      // Enviar datos por AJAX
-      $.ajax({
-        type: "POST",
-        url: "../assets/forms/contact.php",
-        data: formData,
-        success: function(response) {
-          // Ocultar mensaje de carga
-          $(".loading").hide();
-
-          // Comprobar si el correo se envió correctamente
-          if (response.trim() == "success") {
-            $(".sent-message").show();
-            $("#contactForm")[0].reset(); // Resetear el formulario
-          } else {
-            $(".error-message").html(response).show();
-          }
-        },
-        error: function() {
-          $(".loading").hide();
-          $(".error-message").html("Hubo un problema al enviar el mensaje, por favor intenta nuevamente.").show();
-        }
-      });
-    });
-  });
-</script>
+<script src="./assets/js/scripts.js"></script>
 </body>
 
 
