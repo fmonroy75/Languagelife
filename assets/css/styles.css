@@ -5,6 +5,8 @@
   --accent-color: #060268; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --hero-overlay-color: rgba(13, 30, 45, 0.6);
+  --why-us-icon-bg: color-mix(in srgb, var(--accent-color), transparent 95%);
 }
 
 body {
@@ -42,21 +44,6 @@ h6 {
   height: 400px;
   width: auto;
 }
-/* Hero Section * /
-
-#Hero-Section{
-  background-image: url("../img/languagelife.jpg");
-  background-position: center ;
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-align: right;
-  font: normal normal bold 70px/82px Raleway;
-  letter-spacing: 0.7px;
-  color: #FFFFFF;
-  opacity: 1;
-}  
-
-*/
 
 /*--------------------------------------------------------------
 # Hero Section
@@ -80,7 +67,7 @@ h6 {
 
 #hero .carousel-item::before {
   content: "";
-  background-color: rgba(13, 30, 45, 0.6);
+  background-color: var(--hero-overlay-color);
   position: absolute;
   height: 100%;
   width: 100%;
@@ -115,6 +102,13 @@ h6 {
 
   #hero .carousel-content.container {
     padding: 0 50px;
+  }
+}
+
+@media (max-height: 500px) {
+  #hero,
+  #hero .carousel-item {
+    height: 120vh;
   }
 }
 
@@ -176,7 +170,7 @@ h6 {
   cursor: pointer;
 }
 
-#hero .btn-get-started {
+.btn-common {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -188,8 +182,12 @@ h6 {
   line-height: 1;
   margin: 10px;
   color: #fff;
-  animation-delay: 0.8s;
   border: 0;
+}
+
+#hero .btn-get-started {
+  /* Se eliminó la línea con 'composes' */
+  animation-delay: 0.8s;
   background: #428bca;
 }
 
@@ -200,13 +198,6 @@ h6 {
 @media (max-width: 768px) {
   #hero h2 {
     font-size: 28px;
-  }
-}
-
-@media (max-height: 500px) {
-  #hero,
-  #hero .carousel-item {
-    height: 120vh;
   }
 }
 
@@ -250,25 +241,21 @@ footer {
   background-color: #d4d7da;
 }
 
-/*Destacados* /
-
-#Section-Destacados .card-img-top {
-  height: 120px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 /*--------------------------------------------------------------
 # Global Sections
 --------------------------------------------------------------*/
 section,
+.section,
+.page-title {
+  padding: 60px 0;
+  overflow: clip;
+}
+
+section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
   scroll-margin-top: 900px;
-  overflow: clip;
 }
 
 @media (max-width: 1199px) {
@@ -367,7 +354,7 @@ section,
   color: var(--accent-color);
   font-size: 32px;
   margin-bottom: 30px;
-  background: color-mix(in srgb, var(--accent-color), transparent 95%);
+  background: var(--why-us-icon-bg);
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -428,102 +415,9 @@ section,
   margin: 0;
   border-radius: 5px;
 }
-/*
-.courses .course-content .price {
-  margin: 0;
-  font-weight: 700;
-  font-size: 18px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-}
-*/
-.courses .course-content .description {
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-}
-
-/*.courses .trainer {
-  padding-top: 15px;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.courses .trainer .trainer-profile img {
-  max-width: 50px;
-  border-radius: 50px;
-}
-
-.courses .trainer .trainer-profile .trainer-link {
-  padding-left: 10px;
-  font-weight: 600;
-  font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
-  transition: 0.3s;
-}
-
-.courses .trainer .trainer-profile .trainer-link:hover {
-  color: var(--accent-color);
-}
-
-.courses .trainer .trainer-rank {
-  font-size: 18px;
-  color: color-mix(in srgb, var(--default-color), transparent 60%);
-}
-
-.courses .trainer .trainer-rank .user-icon {
-  font-size: 22px;
-}
-*/
-
-/* PHP Email Form Messages
-------------------------------*/
-/*.php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .loading {
-  display: none;
-  background: var(--surface-color);
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
-}
-
-@keyframes php-email-form-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}*/
+/*-------------------------------------*/
+/* Boton Whatsapp */
+/*-------------------------------------*/
 
 .btn-whatsapp {
   position: fixed;
