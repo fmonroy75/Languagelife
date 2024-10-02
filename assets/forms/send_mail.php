@@ -1,4 +1,5 @@
 <?php
+/*
 // Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Capturar los datos del formulario
@@ -32,5 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     echo "Solicitud no v�lida.";
+}*/
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $obraId = $_POST['obraId'];
+    $email = $_POST['email'];
+    $mensaje = $_POST['mensaje'];
+
+    $to = "educacion@languagelife.cl"; // Cambia a tu dirección de destino
+    $subject = "Nuevo mensaje sobre la obra " . $obraId;
+    $body = "Correo: " . $email . "\n\n" . "Mensaje: " . $mensaje;
+    $headers = "From: " . $email;
+
+    // Enviar el correo
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Correo enviado correctamente";
+    } else {
+        echo "Error al enviar el correo";
+    }
 }
 ?>
